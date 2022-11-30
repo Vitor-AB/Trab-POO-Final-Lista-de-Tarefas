@@ -1,5 +1,4 @@
 import Model.CriarTabelas;
-import Model.ListarTarefas;
 import View.TarefasView;
 
 public class Main {

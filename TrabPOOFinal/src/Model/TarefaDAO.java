@@ -36,6 +36,20 @@ public class TarefaDAO extends BaseDAO{
         }
     }
 
+    public void excluir(Tarefa tarefa){
+        String sql = "delete from tarefa where id = ? and descricao = ? and concluido = ?";
+        try(Connection c = obterConexao();
+            PreparedStatement p = c.prepareStatement(sql)){
+            p.setInt(1,tarefa.getId());
+            p.setString(2,tarefa.getDescricao());
+            p.setBoolean(3,tarefa.isConcluido());
+            p.execute();
+        }catch (SQLException e){
+            System.out.println("Erro ao atualizar tarefa ");
+            e.printStackTrace();
+        }
+    }
+
     public List<Tarefa> obterTodos() {
         List<Tarefa> lista = new ArrayList<>();
         String sql = "select id, descricao, concluido from tarefa";
